@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smooth Navigation</title>
+    <title>websiteby</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
         }
 
         body {
@@ -17,6 +21,32 @@
             color: #fff;
             overflow-x: hidden;
             padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #666;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #888;
+        }
+
+        /* Firefox scrollbar */
+        * {
+            scrollbar-color: #666 transparent;
+            scrollbar-width: thin;
         }
 
         .window-container {
@@ -26,6 +56,9 @@
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            flex: 1;
         }
 
         .window-titlebar {
@@ -36,16 +69,14 @@
             color: #999;
             font-size: 13px;
             font-weight: 500;
-            display: block;
+            white-space: nowrap;
         }
 
         nav {
             background: #1a1a1a;
             padding: 0;
             position: relative;
-            width: 100%;
             border-bottom: 1px solid #333;
-            display: block;
         }
 
         .nav-container {
@@ -60,6 +91,9 @@
             list-style: none;
             position: relative;
             z-index: 1;
+            width: 100%;
+            margin: 0;
+            padding: 0;
         }
 
         .nav-links li {
@@ -73,6 +107,7 @@
             text-decoration: none;
             transition: color 0.3s;
             font-size: 14px;
+            white-space: nowrap;
         }
 
         .nav-links a:hover {
@@ -107,24 +142,28 @@
             position: relative;
             min-height: 600px;
             background: #0a0a0a;
+            flex: 1;
+            overflow: hidden;
         }
 
         .page {
             position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            min-height: 600px;
+            height: 100%;
             padding: 60px 40px;
             opacity: 0;
             transform: translateY(20px);
             pointer-events: none;
             transition: opacity 0.4s ease, transform 0.4s ease;
+            overflow-y: auto;
         }
 
         .page.active {
             opacity: 1;
             transform: translateY(0);
             pointer-events: auto;
-            position: relative;
         }
 
         .page-content {
@@ -189,82 +228,83 @@
     <div class="window-container">
         <div class="window-titlebar" id="window-title">/</div>
         <nav>
-        <div class="nav-container">
-            <ul class="nav-links">
-                <li class="active"><a href="#home" data-page="home">/</a></li>
-                <li><a href="#credits" data-page="credits">/credits</a></li>
-                <li><a href="#sources" data-page="sources">/sources</a></li>
-                <li><a href="#github" data-page="github">/github</a></li>
-                <li><a href="#more" data-page="more">/more</a></li>
-            </ul>
-            <div class="nav-indicator"></div>
-        </div>
-    </nav>
+            <div class="nav-container">
+                <ul class="nav-links">
+                    <li class="active"><a href="#home" data-page="home">/</a></li>
+                    <li><a href="#credits" data-page="credits">/credits</a></li>
+                    <li><a href="#sources" data-page="sources">/sources</a></li>
+                    <li><a href="https://github.com/imfluxxy" target="_blank">/github</a></li>
+                    <li><a href="#more" data-page="more">/more</a></li>
+                </ul>
+                <div class="nav-indicator"></div>
+            </div>
+        </nav>
 
-    <div class="page-container">
-        <div class="page active" id="home">
-            <div class="page-content">
-                <h1>welcome</h1>
-                <p>this is a website test build someone at credits</p>
-                <div class="grid">
-                    <div class="card">
-                        <h2>card</h2>
-                        <p>this hold nothing.</p>
-                    </div>
-                    <div class="card">
-                        <h2>card</h2>
-                        <p>really macOS looks.</p>
-                    </div>
-                    <div class="card">
-                        <h2>card</h2>
-                        <p>beauty</p>
+        <div class="page-container">
+            <div class="page active" id="home">
+                <div class="page-content">
+                    <h1>welcome</h1>
+                    <p>this is me website</p>
+                    <div class="grid">
+                        <div class="card">
+                            <h2>card</h2>
+                            <p>my info here blah blah</p>
+                        </div>
+                        <div class="card">
+                            <h2>card</h2>
+                            <p>good code</p>
+                        </div>
+                        <div class="card">
+                            <h2>card</h2>
+                            <p>beauty</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="page" id="credits">
-            <div class="page-content">
-                <h1>credits</h1>
-                <p>this project was built with passion and attention to detail.</p>
-                <div class="card">
-                    <h2>fluxxy</h2>
-                    <p>a dumbass who create stuff for fun</p>
-                </div>
-                <div class="card">
-                    <h2>ayaeryn</h2>
-                    <p>another dumbass build this</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="page" id="sources">
-            <div class="page-content">
-                <h1>sources</h1>
-                <p>page sources this available at (uhhh), allow anyone to contribute.</p>
-                <div class="card">
-                    <h2>github</h2>
-                    <p>available at github</p>
-                </div>
-                <div class="card">
-                    <h2>customization</h2>
-                    <p>if you cant code then i recommend using ai</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="page" id="more">
-            <div class="page-content">
-                <h1>more</h1>
-                <p>explore additional resources and information</p>
-                <div class="grid">
+            <div class="page" id="credits">
+                <div class="page-content">
+                    <h1>credits</h1>
+                    <p>this project was built with passion and attention to detail.</p>
                     <div class="card">
-                        <h2>inspired</h2>
-                        <p>heavily inspired by <a href="https://palera.in" style="color: rgb(154, 210, 255);">palera.in</a> web design, macOS window design</p>
+                        <h2>fluxxy</h2>
+                        <p>a dumbass who create stuff for fun</p>
                     </div>
                     <div class="card">
-                        <h2>bug</h2>
-                        <p>report bug through @imfluxxy discord for free.</p>
+                        <h2>ayaeryn</h2>
+                        <p>another dumbass build this</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page" id="sources">
+                <div class="page-content">
+                    <h1>sources</h1>
+                    <p>page sources is available at <a href="https://github.com/imfluxxy/websiteby" style="color: rgb(154, 210, 255)" target="_blank">github</a>, allow anyone to contribute.</p>
+                    <div class="card">
+                        <h2>github</h2>
+                        <p>available at github</p>
+                    </div>
+                    <div class="card">
+                        <h2>customization</h2>
+                        <p>if you cant code then i recommend using ai</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page" id="more">
+                <div class="page-content">
+                    <h1>more</h1>
+                    <p>explore additional resources and information</p>
+                    <div class="grid">
+                        <div class="card">
+                            <h2>inspired</h2>
+                            <p>heavily inspired by <a href="https://palera.in" style="color: rgb(154, 210, 255);" target="_blank">palera.in</a> web design, macOS window design</p>
+                        </div>
+                        <div class="card">
+                            <h2>bug</h2>
+                            <p>report bug through @imfluxxy discord for free.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -272,7 +312,7 @@
     </div>
 
     <script>
-        const links = document.querySelectorAll('.nav-links a');
+        const links = document.querySelectorAll('.nav-links a[data-page]');
         const pages = document.querySelectorAll('.page');
         const navItems = document.querySelectorAll('.nav-links li');
         const indicator = document.querySelector('.nav-indicator');
